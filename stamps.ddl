@@ -1,12 +1,13 @@
 CREATE TABLE `Stamps` (
   `Stamp_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Issue_Date` date DEFAULT NULL,
-  `Set_ID` varchar(100) DEFAULT NULL COMMENT 'Foreign key to the Set Table',
-  `Set_Member_ID` int(11) DEFAULT '1',
-  `Name` varchar(200) DEFAULT NULL,
+  `Set_ID` varchar(180) NOT NULL COMMENT 'Foreign key to the Set Table',
+  `Set_Member_ID` int(11) NOT NULL DEFAULT '1',
+  `Name` varchar(200) NOT NULL,
   `Description` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`Stamp_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 
 CREATE TABLE `Sets` (
