@@ -2,13 +2,13 @@ import mysql.connector as connector
 import myloginpath
 import os
 
-
 option_file=os.path.expanduser('~/.mylogin.cnf')
 conf = myloginpath.parse(login_path='client', path=option_file)
 
 cnx = connector.connect(user=conf['user'], password=conf['password'], database='stamps')
 cursor = cnx.cursor()
-query = ("SELECT * from Sets")
+sql=input("what is your sql ?")
+query = (sql or "SELECT * from Sets")
 
 cursor.execute(query)
 for row in cursor:
