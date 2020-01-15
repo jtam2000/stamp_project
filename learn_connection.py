@@ -10,13 +10,12 @@ conf = myloginpath.parse(login_path=option_file_section, path=option_file)
 cnx = connector.connect(user=conf['user'], password=conf['password'], database='stamps')
 
 cursor = cnx.cursor()
-default_sql="SELECT * from Sets"
-input_sql=input("what is your sql ?[default sql: SELECT * from Sets]")
-cursor.execute(input_sql or default_sql )
+default_sql = "SELECT * from Sets"
+input_sql = input("What is your SQL statement ? [default: SELECT * from Sets]")
+cursor.execute(input_sql or default_sql)
 
-pp(cursor.column_names)
-for row in cursor:
-  pp(row)
+print(cursor.column_names)
+[print(row) for row in cursor]
 
 cursor.close()
 cnx.close()
