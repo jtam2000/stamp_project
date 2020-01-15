@@ -10,7 +10,7 @@ conf = myloginpath.parse(login_path=option_file_section, path=option_file)
 cnx = connector.connect(user=conf['user'], password=conf['password'], database='stamps')
 
 cursor = cnx.cursor()
-default_sql = "SELECT * from Sets"
+default_sql= "SELECT * from Sets"
 input_sql = input("What is your SQL statement ? [default: SELECT * from Sets]")
 cursor.execute(input_sql or default_sql)
 
