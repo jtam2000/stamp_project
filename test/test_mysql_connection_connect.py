@@ -1,8 +1,4 @@
 import mysql.connector as connector
-import myloginpath
-import os
-import pytest
-
 
 
 def test_connection_optional_file_is_parsable(__cnx_config):
