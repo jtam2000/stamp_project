@@ -8,3 +8,5 @@ O
 src/database/InsertTestData.sql,4/1/4115411fc4a0015e05b4ca48eebd3d81d78b48a5
 G
 src/database/stamps.ddl,8/7/87f04cc9c4bd526e9006a654b4b68a23a2670ae0
+U
+%test/test_mysql_connection_connect.py,9/f/9fbecb1117374ad03ee23d1f9161958e8effcb3c

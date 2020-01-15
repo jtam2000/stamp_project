@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="mysql_connector_python-8.0.19">
+    <CLASSES />
+    <JAVADOC />
+    <NATIVE>
+      <root url="file:///usr/local/lib/python3.7/site-packages/mysql_connector_python-8.0.19.dist-info" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>

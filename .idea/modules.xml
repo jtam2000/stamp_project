@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file:///usr/local/lib/python3.7/site-packages/site-packages.iml" filepath="/usr/local/lib/python3.7/site-packages/site-packages.iml" />
       <module fileurl="file://$PROJECT_DIR$/stamp_project.iml" filepath="$PROJECT_DIR$/stamp_project.iml" />
     </modules>
   </component>

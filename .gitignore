@@ -1,1 +1,4 @@
 *.bak
+.pytest_cache/*
+.idea/sonarlint/*
+test/__pycache__/*
