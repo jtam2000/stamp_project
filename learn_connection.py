@@ -1,20 +1,25 @@
 import mysql.connector as connector
 import myloginpath
 import os
+from pprint import pprint as pp
 
 option_file=os.path.expanduser('~/.mylogin.cnf')
-conf = myloginpath.parse(login_path='client', path=option_file)
+option_file_section='client'
 
+conf = myloginpath.parse(login_path=option_file_section, path=option_file)
 cnx = connector.connect(user=conf['user'], password=conf['password'], database='stamps')
-cursor = cnx.cursor()
-sql=input("what is your sql ?")
-query = (sql or "SELECT * from Sets")
 
-cursor.execute(query)
+cursor = cnx.cursor()
+default_sql="SELECT * from Sets"
+input_sql=input("what is your sql ?[default sql: SELECT * from Sets]")
+cursor.execute(input_sql or default_sql )
+
+pp(cursor.column_names)
 for row in cursor:
-  print(row)
+  pp(row)
 
 cursor.close()
+cnx.close()
 
 
 ''' 
