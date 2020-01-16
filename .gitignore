@@ -2,4 +2,4 @@
 .pytest_cache/*
 .idea/sonarlint/*
 test/__pycache__/*
-test/report.html
+test/*html
