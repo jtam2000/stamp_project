@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="stamp_project">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/stampoutputviews" />
+      <root url="file://$PROJECT_DIR$/database/MySqlOptionalFile.py" />
+      <root url="file://$PROJECT_DIR$/database/MySqlConnection.py" />
+      <root url="file://$PROJECT_DIR$/stampoutputviews/CountryInventory.py" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/stampoutputviews/CountryInventory.py" />
+      <root url="file://$PROJECT_DIR$/stampoutputviews" />
+      <root url="file://$PROJECT_DIR$/database" />
+    </SOURCES>
+  </library>
+</component>

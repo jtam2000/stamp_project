@@ -3,3 +3,6 @@
 .idea/sonarlint/*
 test/__pycache__/*
 test/*html
+out/*
+.idea/sonarlint/*
+*/__pycache__/*

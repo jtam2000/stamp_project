@@ -2,11 +2,12 @@ import mysql.connector as connector
 import myloginpath
 import os
 import pytest
+from stampoutputviews.CountryInventory import CountryInventory
+from database.MySqlOptionalFile import MySqlOptionalFile
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def __cnx_config_test_param():
-
     """
         pytest fixture: The parameters used for MySql Connection configuration
     """
@@ -16,12 +17,12 @@ def __cnx_config_test_param():
     params.update(option_file_section="client")
     params.update(database="stamps")
 
+    option_file = MySqlOptionalFile()
     return params
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def __cnx_config(__cnx_config_test_param):
-
     """
         pytest fixture: parse the user's optional file for MySql
     """
@@ -35,9 +36,8 @@ def __cnx_config(__cnx_config_test_param):
     return config
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def __stamp_db_connection(__cnx_config):
-
     """
         pytest fixture: a default connection to the database
     """
@@ -45,12 +45,19 @@ def __stamp_db_connection(__cnx_config):
     connection = connector.connect(user=__cnx_config['user'],
                                    password=__cnx_config['password'],
                                    database=__cnx_config["database"])
-    return connection
+    yield connection
+    connection.close()
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def __stamp_db_cursor(__stamp_db_connection):
     """
     pytest fixture: a default cursor to the database
     """
-    return __stamp_db_connection.cursor()
+    cursor = __stamp_db_connection.cursor()
+    yield cursor
+
+
+@pytest.fixture(scope="session")
+def __country_inventory_data():
+    return CountryInventory()
