@@ -1,52 +1,35 @@
-import mysql.connector as connector
-import myloginpath
-import os
 import pytest
 from stampoutputviews.CountryInventory import CountryInventory
 from database.MySqlOptionalFile import MySqlOptionalFile
+from database.MySqlConnection import DatabaseConnection
 
 
 @pytest.fixture(scope="session")
-def __cnx_config_test_param():
+def __cnx_config_file():
     """
-        pytest fixture: The parameters used for MySql Connection configuration
+        pytest fixture: parse the mysql optional file
     """
 
-    params = {}
-    params.update(optional_file=os.path.expanduser('~/.mylogin.cnf'))
-    params.update(option_file_section="client")
-    params.update(database="stamps")
-
-    option_file = MySqlOptionalFile()
-    return params
+    option_file = MySqlOptionalFile(optional_file='~/.mylogin.cnf',
+                                    file_section='client',
+                                    use_db='stamps')
+    return option_file
 
 
 @pytest.fixture(scope="session")
-def __cnx_config(__cnx_config_test_param):
+def __cnx_config(__cnx_config_file):
     """
         pytest fixture: parse the user's optional file for MySql
     """
-    optional_file = __cnx_config_test_param["optional_file"]
-    file_section = __cnx_config_test_param["option_file_section"]
-    database = __cnx_config_test_param["database"]
-
-    # parse the optional file
-    config = myloginpath.parse(path=optional_file, login_path=file_section)
-    config.update(database=database)
-    return config
+    return __cnx_config_file.get_config()
 
 
 @pytest.fixture(scope="session")
-def __stamp_db_connection(__cnx_config):
+def __stamp_db_connection(__cnx_config_file):
     """
         pytest fixture: a default connection to the database
     """
-
-    connection = connector.connect(user=__cnx_config['user'],
-                                   password=__cnx_config['password'],
-                                   database=__cnx_config["database"])
-    yield connection
-    connection.close()
+    return DatabaseConnection(__cnx_config_file)
 
 
 @pytest.fixture(scope="session")
@@ -54,8 +37,8 @@ def __stamp_db_cursor(__stamp_db_connection):
     """
     pytest fixture: a default cursor to the database
     """
-    cursor = __stamp_db_connection.cursor()
-    yield cursor
+
+    pass
 
 
 @pytest.fixture(scope="session")

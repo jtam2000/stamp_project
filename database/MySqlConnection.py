@@ -24,17 +24,20 @@ class DatabaseConnection:
                                             password=conf['password'],
                                             database=conf['database'])
         if set_results:
+            # print("creating a cursor from connection")
             self.query_results = self.connection.cursor()
 
     def execute_sql(self, sql: str):
         self.connect_to_db()
-        print("executing the sql: ", sql)
+        print("\nexecuting the sql: ", sql)
         self.query_results.execute(sql)
+        return self.query_results
 
     def get_sql_results(self):
         return self.query_results
 
     def print_sql_result(self):
+        print(self.get_sql_results().column_names)
         [print(row) for row in self.get_sql_results()]
 
     @staticmethod
@@ -57,28 +60,21 @@ class DatabaseConnection:
         cursor.execute(input_sql or default_sql)
 
         print(cursor.column_names)
-
         [print(row) for row in cursor]
 
         cursor.close()
         cnx.close()
 
-        country_view = CountryInventory()
-        print(country_view.get_columns())
-
-
-DatabaseConnection.sample_connection("SELECT * FROM vw_country_inventory")
-
-''' 
-Information regarding decoding of the option_file from mysql set up for the user:
-#https://stackoverflow.com/questions/36345273/connecting-python-to-mysql-using-an-encrypted-option-file
-
-I found this in the internet
- pip install myloginpath worked 
-
-import myloginpath
-import pymysql
-conf = myloginpath.parse('client')
-db = pymysql.connect(**conf, host='mydbhost', db='whatever')
-
-'''
+        ''' 
+        Information regarding decoding of the option_file from mysql set up for the user:
+        #https://stackoverflow.com/questions/36345273/connecting-python-to-mysql-using-an-encrypted-option-file
+        
+        I found this in the internet
+         pip install myloginpath worked 
+        
+        import myloginpath
+        import pymysql
+        conf = myloginpath.parse('client')
+        db = pymysql.connect(**conf, host='mydbhost', db='whatever')
+        
+        '''
