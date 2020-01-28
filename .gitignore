@@ -6,3 +6,7 @@ test/*html
 out/*
 .idea/sonarlint/*
 */__pycache__/*
+../database/.coverage
+.coverage
+htmlcov/*
+htmlcov
