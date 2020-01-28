@@ -1,0 +1,12 @@
+pytest --cov=../ --cov-report=html --cov-branch
+
+
+where --cov=[path where source to measure coverage]
+
+
+you can also run
+python -m pytest --cov=../ --cov-report=html --cov-branch
+
+
+make sure to use --cov-branch
+--cov-branch
