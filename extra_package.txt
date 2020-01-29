@@ -1,0 +1,4 @@
+Extra Python Package needs to be installed
+
+pip install mysql-connector-python
+pip install myloginpath
